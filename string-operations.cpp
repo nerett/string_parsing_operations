@@ -135,7 +135,7 @@ int count_strings( struct text* some_text )
 
     for( int i = 0; i < some_text->N_symbols; i++ ) // strchr
     {
-        if( some_text->text_line[i] == '\n' ) //а если '\0' ну или выделять памяти на одну строку больше
+        if( ( some_text->text_line[i] == '\n' ) || ( some_text->text_line[i] == ' ' ) ) //а если '\0' ну или выделять памяти на одну строку больше
         {
             some_text->N_strings++;
             some_text->text_line[i] = '\0';
@@ -161,7 +161,7 @@ int find_string_beginning( struct text* some_text ) // init_strings
 
     for( int i = 0; i < some_text->N_symbols; i++ ) //начинать с нуля
     {
-        if( last_read == '\n' || last_read == '\0' )
+        if( last_read == '\n' || last_read == '\0' || last_read == ' ' )
         {
             some_text->index_string[j] = some_text->text_line + i;
             j++;
